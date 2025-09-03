@@ -1,0 +1,8 @@
+{
+  "name": "firebase -  Minha Baturité",
+  "description": "An application for citizens of Baturité-CE, Brazil to create and track public service requests, featuring an AI assistant.",
+  "requestFramePermissions": [
+    "microphone",
+    "geolocation"
+  ]
+}
