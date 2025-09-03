@@ -213,7 +213,23 @@ export const useChat = (userProfile: UserProfile) => {
     const [isLoading, setIsLoading] = useState(false);
   
     useEffect(() => {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY! });
+      // A chave da API do Gemini é fornecida pelo ambiente de execução
+      // através de `process.env.API_KEY`.
+      const apiKey = process.env.API_KEY;
+      if (!apiKey) {
+        console.error("Chave da API do Gemini (API_KEY) não encontrada. Verifique as variáveis de ambiente da plataforma.");
+        // Não inicialize o chat se a chave não estiver presente
+        const errorMessage: ChatMessage = {
+            id: `model-error-no-key`,
+            role: 'model',
+            content: 'Desculpe, o assistente virtual está temporariamente indisponível por um erro de configuração.',
+            timestamp: new Date().toISOString(),
+        };
+        setMessages([errorMessage]);
+        return;
+      }
+
+      const ai = new GoogleGenAI({ apiKey });
       const chatInstance = ai.chats.create({
         model: 'gemini-2.5-flash',
         config: {

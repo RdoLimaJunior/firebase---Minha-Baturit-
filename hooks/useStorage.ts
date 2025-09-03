@@ -1,50 +1,28 @@
 import { useState } from 'react';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { storage } from '../firebase';
-import { useAuth } from './useAuth';
 
 export const useStorage = () => {
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState<Error | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { user } = useAuth();
 
-  const uploadFile = (file: File, path: string) => {
+  const uploadFile = (file: File, path: string): Promise<string> => {
     setIsLoading(true);
     setError(null);
     setProgress(0);
 
-    // Adiciona o UID do usuário e um timestamp para garantir nomes de arquivo únicos
-    const filePath = `${path}/${user?.uid || 'public'}/${new Date().getTime()}_${file.name}`;
-    const storageRef = ref(storage, filePath);
-    const uploadTask = uploadBytesResumable(storageRef, file);
+    // This is a simulation. It will not actually upload the file.
+    // It returns a local object URL that can be used for previews.
+    // This URL is temporary and will be invalid after the page is closed.
+    console.log(`Simulating upload for file: ${file.name} to path: ${path}`);
 
-    return new Promise<string>((resolve, reject) => {
-        uploadTask.on(
-            'state_changed',
-            (snapshot) => {
-            const prog = Math.round(
-                (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            );
-            setProgress(prog);
-            },
-            (err) => {
-            console.error(err);
-            setError(err);
-            setIsLoading(false);
-            reject(err);
-            },
-            () => {
-            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                setIsLoading(false);
-                resolve(downloadURL);
-            }).catch(err => {
-                setError(err);
-                setIsLoading(false);
-                reject(err);
-            });
-            }
-        );
+    return new Promise((resolve) => {
+      // Simulate a quick upload process
+      setTimeout(() => setProgress(50), 200);
+      setTimeout(() => {
+        setProgress(100);
+        setIsLoading(false);
+        resolve(URL.createObjectURL(file));
+      }, 500);
     });
   };
 

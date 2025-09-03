@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
 import ProtocolosList from './components/protocolos/ProtocolosList';
@@ -163,6 +163,34 @@ const AppContent: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      const registerServiceWorker = () => {
+        // Construct an absolute URL for the service worker.
+        // This prevents cross-origin errors in environments where relative paths
+        // are resolved against a different origin than the main document.
+        const swUrl = new URL('service-worker.js', window.location.origin).href;
+        navigator.serviceWorker.register(swUrl)
+          .then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          })
+          .catch(error => {
+            console.error('Service Worker registration failed:', error);
+          });
+      };
+
+      // The 'load' event might have already fired by the time this useEffect runs.
+      // So we check the document.readyState.
+      if (document.readyState === 'complete') {
+        registerServiceWorker();
+      } else {
+        window.addEventListener('load', registerServiceWorker);
+        // Cleanup listener if component unmounts before load event
+        return () => window.removeEventListener('load', registerServiceWorker);
+      }
+    }
+  }, []);
+  
   return (
     <AccessibilityProvider>
       <ToastProvider>
