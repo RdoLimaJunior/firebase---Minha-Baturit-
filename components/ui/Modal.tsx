@@ -1,6 +1,7 @@
 
 
 
+
 import React, { useEffect } from 'react';
 import Icon from './Icon';
 
@@ -36,15 +37,15 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
 
   return (
     <div 
-      className="fixed inset-0 bg-white dark:bg-slate-900 z-[1000] animate-slide-in-up-full"
+      className="fixed inset-0 bg-white z-[1000] animate-slide-in-up-full"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
       <div className="w-full h-full flex flex-col">
-        <header className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700 flex-shrink-0">
-          <h2 id="modal-title" className="text-xl font-bold text-slate-800 dark:text-slate-100">{title}</h2>
-          <button onClick={onClose} className="p-1 rounded-full text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors" aria-label="Fechar modal">
+        <header className="flex items-center justify-between p-4 border-b border-slate-200 flex-shrink-0">
+          <h2 id="modal-title" className="text-xl font-bold text-slate-800">{title}</h2>
+          <button onClick={onClose} className="p-1 rounded-full text-slate-500 hover:bg-slate-100 transition-colors" aria-label="Fechar modal">
             <Icon name="arrow_back" className="text-2xl" />
           </button>
         </header>

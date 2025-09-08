@@ -47,8 +47,8 @@ const LazyImage: React.FC<LazyImageProps> = ({ src, alt, className, isLoading, o
   return (
     <div ref={placeholderRef} className={`relative overflow-hidden ${className}`}>
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-slate-200 dark:bg-slate-700">
-          <div className="w-8 h-8 border-2 border-slate-400 dark:border-slate-500 border-t-transparent rounded-full animate-spin"></div>
+        <div className="absolute inset-0 flex items-center justify-center bg-slate-200">
+          <div className="w-8 h-8 border-2 border-slate-400 border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
       {isInView && (

@@ -77,7 +77,7 @@ const ParticipacaoFeed: React.FC<ParticipacaoFeedProps> = ({ navigateTo }) => {
   const renderContent = () => {
     if (loading) {
       return (
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[...Array(3)].map((_, i) => <SkeletonCard key={i} />)}
         </div>
       );
@@ -93,7 +93,7 @@ const ParticipacaoFeed: React.FC<ParticipacaoFeedProps> = ({ navigateTo }) => {
       );
     }
     return (
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredAndSortedPublicacoes.map(pub => (
           <PublicacaoCard 
             key={pub.id} 
@@ -112,7 +112,7 @@ const ParticipacaoFeed: React.FC<ParticipacaoFeedProps> = ({ navigateTo }) => {
             <p className="text-slate-600 mt-1">Um espaço para ideias, problemas e elogios da nossa comunidade.</p>
         </div>
       
-        <div className="sticky top-[68px] bg-gray-50 z-10 py-2 space-y-3">
+        <div className="sticky top-[68px] bg-slate-50/90 backdrop-blur-sm z-10 py-3 space-y-3 border-b border-slate-200 -mx-4 px-4 mb-4">
              <div className="relative">
                 <Icon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                 <input
@@ -120,7 +120,7 @@ const ParticipacaoFeed: React.FC<ParticipacaoFeedProps> = ({ navigateTo }) => {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Buscar por título, resumo ou bairro..."
-                    className="w-full p-3 pl-10 bg-white text-slate-900 border border-slate-300 rounded-full focus:ring-indigo-600 focus:border-indigo-600 text-sm"
+                    className="w-full p-3 pl-10 bg-white text-slate-900 border border-slate-300 rounded-full focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] text-sm"
                 />
             </div>
             <div className="flex items-center justify-between gap-2 flex-wrap">

@@ -96,26 +96,26 @@ const NoticiaDetail: React.FC<NoticiaDetailProps> = ({ noticiaId, navigateTo, cu
         <Button onClick={() => navigateTo('NOTICIAS_LIST')} variant="ghost" iconLeft="arrow_back">Voltar para Notícias</Button>
         <Card className="!p-0">
             <div className="p-4 flex items-center space-x-3">
-                 <img src="https://www.baturite.ce.gov.br/imagens/logo-prefeitura-de-baturite.png" alt="Logo" className="w-10 h-10 rounded-full border-2 border-slate-200 dark:border-slate-700" />
+                 <img src="https://www.baturite.ce.gov.br/imagens/logo-prefeitura-de-baturite.png" alt="Logo" className="w-10 h-10 rounded-full border-2 border-slate-200" />
                  <div>
-                    <h4 className="font-bold text-slate-800 dark:text-slate-100">Prefeitura de Baturité</h4>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">{new Date(noticia.date).toLocaleDateString('pt-BR', { dateStyle: 'long' })}</p>
+                    <h4 className="font-bold text-slate-800">Prefeitura de Baturité</h4>
+                    <p className="text-xs text-slate-500">{new Date(noticia.date).toLocaleDateString('pt-BR', { dateStyle: 'long' })}</p>
                  </div>
             </div>
             <img src={noticia.imageUrl} alt={noticia.title} className="w-full h-auto max-h-96 object-cover" />
             <div className="p-4">
-                <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">{noticia.title}</h2>
-                <p className="text-slate-700 dark:text-slate-200 mt-2">{noticia.summary}</p>
-                <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center space-x-4">
-                    <button onClick={handleLike} className="flex items-center space-x-1 text-slate-600 dark:text-slate-300 hover:text-red-500">
-                        <Icon name={isLiked ? 'favorite' : 'favorite_border'} className={`text-3xl ${isLiked ? 'text-red-500' : ''}`} />
+                <h2 className="text-xl font-bold text-slate-800">{noticia.title}</h2>
+                <p className="text-slate-700 mt-2">{noticia.summary}</p>
+                <div className="mt-4 pt-4 border-t border-slate-200 flex items-center space-x-4">
+                    <button onClick={handleLike} className="flex items-center space-x-1 text-slate-600 hover:text-[var(--color-accent-red)]">
+                        <Icon name={isLiked ? 'favorite' : 'favorite_border'} className={`text-3xl ${isLiked ? 'text-[var(--color-accent-red)]' : ''}`} />
                         <span className="font-semibold text-sm">{likeCount.toLocaleString('pt-BR')}</span>
                     </button>
-                    <div className="flex items-center space-x-1 text-slate-600 dark:text-slate-300">
+                    <div className="flex items-center space-x-1 text-slate-600">
                         <Icon name="chat_bubble_outline" className="text-3xl" />
                         <span className="font-semibold text-sm">{comments.length}</span>
                     </div>
-                    <button onClick={handleShare} className="flex items-center space-x-1 text-slate-600 dark:text-slate-300 hover:text-indigo-700 dark:hover:text-indigo-400">
+                    <button onClick={handleShare} className="flex items-center space-x-1 text-slate-600 hover:text-[var(--color-primary)]">
                         <Icon name="share" className="text-3xl" />
                     </button>
                 </div>
@@ -123,7 +123,7 @@ const NoticiaDetail: React.FC<NoticiaDetailProps> = ({ noticiaId, navigateTo, cu
         </Card>
         
         <Card>
-            <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">Comentários</h3>
+            <h3 className="text-lg font-bold text-slate-800 mb-4">Comentários</h3>
             <div className="space-y-4">
                 {comments.length > 0 ? (
                     comments.map(comment => (
@@ -131,15 +131,15 @@ const NoticiaDetail: React.FC<NoticiaDetailProps> = ({ noticiaId, navigateTo, cu
                             <img src={comment.author.avatar} alt={comment.author.name} className="w-9 h-9 rounded-full"/>
                             <div>
                                 <p className="text-sm">
-                                    <span className="font-semibold text-slate-800 dark:text-slate-100">{comment.author.name}</span>
-                                    <span className="text-slate-600 dark:text-slate-300 ml-2">{comment.text}</span>
+                                    <span className="font-semibold text-slate-800">{comment.author.name}</span>
+                                    <span className="text-slate-600 ml-2">{comment.text}</span>
                                 </p>
-                                <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{new Date(comment.date).toLocaleDateString('pt-BR')}</p>
+                                <p className="text-xs text-slate-400 mt-0.5">{new Date(comment.date).toLocaleDateString('pt-BR')}</p>
                             </div>
                         </div>
                     ))
                 ) : (
-                    <p className="text-sm text-slate-500 dark:text-slate-400">Nenhum comentário ainda. Seja o primeiro a comentar!</p>
+                    <p className="text-sm text-slate-500">Nenhum comentário ainda. Seja o primeiro a comentar!</p>
                 )}
             </div>
             <form onSubmit={handleAddComment} className="mt-6 flex items-center space-x-2">
@@ -149,7 +149,7 @@ const NoticiaDetail: React.FC<NoticiaDetailProps> = ({ noticiaId, navigateTo, cu
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                     placeholder={isGuest ? "Faça login para comentar" : "Adicione um comentário..."}
-                    className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-full focus:ring-indigo-600 focus:border-indigo-600 text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+                    className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-full focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] text-sm"
                     disabled={isGuest}
                 />
                 <Button type="submit" size="icon" disabled={!newComment.trim() || isGuest}>

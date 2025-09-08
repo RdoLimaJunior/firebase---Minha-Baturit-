@@ -85,7 +85,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose, userProfil
             {!isGuest && (
                 <button
                     onClick={() => fileInputRef.current?.click()}
-                    className="absolute bottom-0 right-0 bg-indigo-600 text-white rounded-full p-2 hover:bg-indigo-700 transition-colors shadow-md"
+                    className="absolute bottom-0 right-0 bg-[var(--color-primary)] text-white rounded-full p-2 hover:bg-opacity-90 transition-colors shadow-md"
                     aria-label="Alterar foto do perfil"
                 >
                     <Icon name="photo_camera" className="text-lg" />
@@ -117,7 +117,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({ isOpen, onClose, userProfil
                         type="text"
                         value={displayName}
                         onChange={(e) => setDisplayName(e.target.value)}
-                        className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-md focus:ring-indigo-600 focus:border-indigo-600"
+                        className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-md focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]"
                         placeholder="Seu nome"
                     />
                 </div>

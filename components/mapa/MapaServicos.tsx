@@ -13,9 +13,9 @@ declare var L: any;
 
 const CATEGORIAS: CategoriaPredioPublico[] = ['Saúde', 'Educação', 'Assistência Social', 'Administração'];
 const CATEGORY_DETAILS: Record<CategoriaPredioPublico, { icon: string; color: string; bgColor: string }> = {
-    'Saúde': { icon: 'local_hospital', color: 'text-rose-700', bgColor: 'bg-rose-100' },
-    'Educação': { icon: 'school', color: 'text-sky-700', bgColor: 'bg-sky-100' },
-    'Assistência Social': { icon: 'people', color: 'text-violet-700', bgColor: 'bg-violet-100' },
+    'Saúde': { icon: 'local_hospital', color: 'text-[var(--color-accent-red)]', bgColor: 'bg-[var(--color-accent-red)]/10' },
+    'Educação': { icon: 'school', color: 'text-[var(--color-primary)]', bgColor: 'bg-[var(--color-primary)]/10' },
+    'Assistência Social': { icon: 'people', color: 'text-[var(--color-accent-pink)]', bgColor: 'bg-[var(--color-accent-pink)]/10' },
     'Administração': { icon: 'corporate_fare', color: 'text-slate-700', bgColor: 'bg-slate-200' }
 };
 
@@ -41,11 +41,10 @@ const PredioPublicoSkeletonItem: React.FC = () => (
 
 const getCategoryIcon = (category: CategoriaPredioPublico, isSelected: boolean = false) => {
     const detail = CATEGORY_DETAILS[category] || { icon: 'location_on' };
-    let bgColorClass = 'bg-slate-500';
-    if(category === 'Saúde') bgColorClass = 'bg-rose-500';
-    if(category === 'Educação') bgColorClass = 'bg-sky-500';
-    if(category === 'Assistência Social') bgColorClass = 'bg-violet-500';
-    if(category === 'Administração') bgColorClass = 'bg-slate-500';
+    let colorClass = 'map-icon-admin';
+    if(category === 'Saúde') colorClass = 'map-icon-saude';
+    if(category === 'Educação') colorClass = 'map-icon-educacao';
+    if(category === 'Assistência Social') colorClass = 'map-icon-assistencia';
 
     const size = isSelected ? 48 : 36;
     const iconSize = isSelected ? '24px' : '18px';
@@ -53,7 +52,7 @@ const getCategoryIcon = (category: CategoriaPredioPublico, isSelected: boolean =
     const shadowClass = isSelected ? 'shadow-2xl scale-110' : 'shadow-lg';
 
     return L.divIcon({
-        html: `<div class="p-2 ${bgColorClass} rounded-full ${shadowClass} ${ringClass} flex items-center justify-center transition-all duration-300" style="width: ${size}px; height: ${size}px;"><span class="material-icons-outlined text-white" style="font-size: ${iconSize};">${detail.icon}</span></div>`,
+        html: `<div class="map-icon p-2 ${colorClass} ${shadowClass} ${ringClass}" style="width: ${size}px; height: ${size}px;"><span class="material-icons-outlined text-white" style="font-size: ${iconSize};">${detail.icon}</span></div>`,
         className: 'bg-transparent border-0',
         iconSize: [size, size],
         iconAnchor: [size/2, size],
@@ -68,7 +67,7 @@ const getTurismoIcon = (isSelected: boolean = false) => {
     const shadowClass = isSelected ? 'shadow-2xl scale-110' : 'shadow-lg';
 
     return L.divIcon({
-        html: `<div class="p-2 bg-amber-500 rounded-full ${shadowClass} ${ringClass} flex items-center justify-center transition-all duration-300" style="width: ${size}px; height: ${size}px;"><span class="material-icons-outlined text-white" style="font-size: ${iconSize};">tour</span></div>`,
+        html: `<div class="map-icon p-2 map-icon-turismo ${shadowClass} ${ringClass}" style="width: ${size}px; height: ${size}px;"><span class="material-icons-outlined text-white" style="font-size: ${iconSize};">tour</span></div>`,
         className: 'bg-transparent border-0',
         iconSize: [size, size],
         iconAnchor: [size / 2, size],
@@ -211,7 +210,7 @@ const MapaServicos: React.FC<MapaServicosProps> = ({ navigateTo, predioId, turis
           <div class="font-sans">
               <h4 class="font-bold text-base mb-1">${item.nome}</h4>
               <p class="text-xs text-slate-600 mb-2">${item.endereco}</p>
-              <button id="popup-details-btn-${item.id}" class="w-full text-center px-2 py-1 bg-indigo-600 text-white text-xs font-semibold rounded-md hover:bg-indigo-700">
+              <button id="popup-details-btn-${item.id}" class="w-full text-center px-2 py-1 bg-[var(--color-primary)] text-white text-xs font-semibold rounded-md hover:bg-opacity-90">
                   Ver Detalhes
               </button>
           </div>
@@ -358,7 +357,7 @@ const MapaServicos: React.FC<MapaServicosProps> = ({ navigateTo, predioId, turis
                   {selectedItem.imagens && selectedItem.imagens.length > 1 && (
                     <div className="p-2 flex space-x-2 overflow-x-auto bg-slate-100">
                         {selectedItem.imagens.map((img, index) => (
-                            <img key={index} src={img} alt={`Miniatura ${index + 1}`} className={`w-16 h-16 object-cover rounded-md cursor-pointer border-2 flex-shrink-0 ${mainImage === img ? 'border-indigo-500' : 'border-transparent'}`} onClick={() => setMainImage(img)} />
+                            <img key={index} src={img} alt={`Miniatura ${index + 1}`} className={`w-16 h-16 object-cover rounded-md cursor-pointer border-2 flex-shrink-0 ${mainImage === img ? 'border-[var(--color-primary)]' : 'border-transparent'}`} onClick={() => setMainImage(img)} />
                         ))}
                     </div>
                   )}
@@ -372,7 +371,7 @@ const MapaServicos: React.FC<MapaServicosProps> = ({ navigateTo, predioId, turis
                       </div>
                       <div className="pt-4 border-t border-slate-200"><h5 className="font-bold text-slate-800 mb-2">Serviços oferecidos:</h5><ul className="list-disc list-inside space-y-1 pl-1">{selectedItem.servicos.map((s, i) => <li key={i}>{s}</li>)}</ul></div>
                       {selectedItem.profissionais && selectedItem.profissionais.length > 0 && (<div className="pt-4 border-t border-slate-200"><h5 className="font-bold text-slate-800 mb-3">Profissionais</h5><div className="space-y-3">{selectedItem.profissionais.map((prof, i) => (<div key={i} className="text-sm"><p className="font-semibold text-slate-700">{prof.nome}</p><p className="text-slate-600">{prof.cargo}</p><p className="text-xs text-slate-500 uppercase">{prof.cargaHoraria}</p></div>))}</div></div>)}
-                      <div className="pt-4 mt-4 border-t border-slate-200 flex items-center flex-wrap gap-3"><Button iconLeft="call" onClick={() => window.location.href = `tel:${selectedItem.telefone.replace(/\D/g, '')}`} variant="secondary" className="bg-emerald-600 hover:bg-emerald-700 text-white">Ligar</Button><Button iconLeft="directions" onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${selectedItem.localizacao.latitude},${selectedItem.localizacao.longitude}`, '_blank')} variant="primary" className="bg-sky-600 hover:bg-sky-700 text-white">Google Maps</Button><Button iconLeft="navigation" onClick={() => window.open(`waze://?ll=${selectedItem.localizacao.latitude},${selectedItem.localizacao.longitude}&navigate=yes`, '_blank')} variant="secondary" className="bg-cyan-500 hover:bg-cyan-600 text-white">Waze</Button></div>
+                      <div className="pt-4 mt-4 border-t border-slate-200 flex items-center flex-wrap gap-3"><Button iconLeft="call" onClick={() => window.location.href = `tel:${selectedItem.telefone.replace(/\D/g, '')}`} variant="secondary" className="!bg-[var(--color-accent-green)] hover:!bg-opacity-90 text-white">Ligar</Button><Button iconLeft="directions" onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${selectedItem.localizacao.latitude},${selectedItem.localizacao.longitude}`, '_blank')} variant="primary">Rotas</Button></div>
                   </div>
                 </>
             ) : (
@@ -381,7 +380,7 @@ const MapaServicos: React.FC<MapaServicosProps> = ({ navigateTo, predioId, turis
                   {selectedItem.imagens && selectedItem.imagens.length > 1 && (
                     <div className="p-2 flex space-x-2 overflow-x-auto bg-slate-100">
                         {selectedItem.imagens.map((img, index) => (
-                            <img key={index} src={img} alt={`Miniatura ${index + 1}`} className={`w-16 h-16 object-cover rounded-md cursor-pointer border-2 flex-shrink-0 ${mainImage === img ? 'border-indigo-500' : 'border-transparent'}`} onClick={() => setMainImage(img)} />
+                            <img key={index} src={img} alt={`Miniatura ${index + 1}`} className={`w-16 h-16 object-cover rounded-md cursor-pointer border-2 flex-shrink-0 ${mainImage === img ? 'border-[var(--color-primary)]' : 'border-transparent'}`} onClick={() => setMainImage(img)} />
                         ))}
                     </div>
                   )}
@@ -390,9 +389,9 @@ const MapaServicos: React.FC<MapaServicosProps> = ({ navigateTo, predioId, turis
                     <div className="pt-4 border-t border-slate-200 space-y-3">
                         <p className="flex items-start"><Icon name="location_on" className="text-xl mr-2 text-slate-500 flex-shrink-0" /><span>{selectedItem.endereco}</span></p>
                         {selectedItem.contato && <p className="flex items-center"><Icon name="phone" className="text-xl mr-2 text-slate-500" />{selectedItem.contato}</p>}
-                        {selectedItem.site && <p className="flex items-start"><Icon name="language" className="text-xl mr-2 text-slate-500 flex-shrink-0" /><a href={selectedItem.site} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline break-all">{selectedItem.site}</a></p>}
+                        {selectedItem.site && <p className="flex items-start"><Icon name="language" className="text-xl mr-2 text-slate-500 flex-shrink-0" /><a href={selectedItem.site} target="_blank" rel="noopener noreferrer" className="text-[var(--color-primary)] hover:underline break-all">{selectedItem.site}</a></p>}
                     </div>
-                    <div className="pt-4 mt-4 border-t border-slate-200 flex items-center flex-wrap gap-3"><Button iconLeft="directions" onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${selectedItem.localizacao.latitude},${selectedItem.localizacao.longitude}`, '_blank')} variant="primary">Rotas</Button>{selectedItem.contato && <Button iconLeft="call" onClick={() => window.location.href = `tel:${selectedItem.contato?.replace(/\D/g, '')}`} variant="secondary">Ligar</Button>}</div>
+                    <div className="pt-4 mt-4 border-t border-slate-200 flex items-center flex-wrap gap-3"><Button iconLeft="directions" onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${selectedItem.localizacao.latitude},${selectedItem.localizacao.longitude}`, '_blank')} variant="primary">Rotas</Button>{selectedItem.contato && <Button iconLeft="call" onClick={() => window.location.href = `tel:${selectedItem.contato?.replace(/\D/g, '')}`} variant="secondary" className="!bg-[var(--color-accent-green)] hover:!bg-opacity-90 text-white">Ligar</Button>}</div>
                   </div>
                 </>
             )}

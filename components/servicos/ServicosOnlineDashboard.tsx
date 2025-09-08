@@ -13,7 +13,7 @@ interface ServicosOnlineDashboardProps {
 const ServicoItem: React.FC<{ servico: ServicoOnline; onAgendar: () => void; }> = ({ servico, onAgendar }) => (
   <Card className="!p-4">
     <div className="flex items-center space-x-4">
-      <Icon name={servico.icon} className="text-3xl text-indigo-600" />
+      <Icon name={servico.icon} className="text-3xl text-[var(--color-primary)]" />
       <div className="flex-1">
         <h3 className="font-bold text-slate-800">{servico.nome}</h3>
         <p className="text-sm text-slate-600">{servico.descricao}</p>
@@ -56,7 +56,7 @@ const ServicoExternoItem: React.FC<{ title: string; link: string; icon: string; 
     return (
         <Card onClick={handleOpenLink} className="!p-4 flex items-center justify-between">
             <div className="flex items-center space-x-4">
-                <Icon name={icon} className="text-3xl text-indigo-600" />
+                <Icon name={icon} className="text-3xl text-[var(--color-primary)]" />
                 <h3 className="font-bold text-slate-800">{title}</h3>
             </div>
             <Icon name="open_in_new" className="text-slate-400" />

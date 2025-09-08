@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ activeProfile, navigateTo }) => {
               alt="Brasão de Baturité" 
               className="h-10"
             />
-            <h1 className="text-xl font-bold text-slate-800 hidden sm:block">Minha <span className="text-indigo-600">Baturité</span></h1>
+            <h1 className="text-xl font-bold text-slate-800 hidden sm:block">Minha <span className="text-[var(--color-accent-pink)]">Baturité</span></h1>
           </div>
           <div className="flex items-center space-x-2">
               <button

@@ -127,7 +127,7 @@ const ConsultaPublicaDetail: React.FC<ConsultaPublicaDetailProps> = ({ consultaI
               <div className="space-y-2">
                   {consulta.documentos.map(doc => (
                       <a href={doc.url} key={doc.nome} target="_blank" rel="noopener noreferrer" className="flex items-center p-2 rounded-md bg-slate-100 hover:bg-slate-200 transition-colors">
-                          <Icon name={doc.icon} className="text-2xl text-indigo-600" />
+                          <Icon name={doc.icon} className="text-2xl text-[var(--color-primary)]" />
                           <span className="ml-3 font-medium text-sm text-slate-800">{doc.nome}</span>
                           <Icon name="download" className="ml-auto text-xl text-slate-500" />
                       </a>
@@ -145,7 +145,7 @@ const ConsultaPublicaDetail: React.FC<ConsultaPublicaDetailProps> = ({ consultaI
                     value={newOpinion}
                     onChange={(e) => setNewOpinion(e.target.value)}
                     placeholder={isGuest ? "Faça login para opinar" : "Escreva sua sugestão, crítica ou apoio ao projeto..."}
-                    className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 text-sm"
+                    className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-lg focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] text-sm"
                     rows={4}
                     disabled={isSubmitting || isGuest}
                 />
@@ -182,7 +182,7 @@ const ConsultaPublicaDetail: React.FC<ConsultaPublicaDetailProps> = ({ consultaI
                                 variant="ghost"
                                 onClick={() => handleSupport(op.id)}
                                 iconLeft="thumb_up"
-                                className={`transition-colors !py-1 ${isSupported ? '!text-indigo-600 font-bold' : 'text-slate-500'}`}
+                                className={`transition-colors !py-1 ${isSupported ? '!text-[var(--color-primary)] font-bold' : 'text-slate-500'}`}
                             >
                                 {op.supports}
                             </Button>
@@ -196,7 +196,7 @@ const ConsultaPublicaDetail: React.FC<ConsultaPublicaDetailProps> = ({ consultaI
       <div className="fixed bottom-24 right-4 z-30 animate-fade-in">
           <Button
               size="lg"
-              className="!rounded-full !p-4 shadow-lg bg-indigo-600 hover:bg-indigo-700 text-white"
+              className="!rounded-full !p-4 shadow-lg bg-[var(--color-primary)] hover:bg-opacity-90 text-white"
               onClick={() => setIsHelpVisible(true)}
               aria-label="Ajuda sobre Consultas Públicas"
           >
@@ -217,7 +217,7 @@ const ConsultaPublicaDetail: React.FC<ConsultaPublicaDetailProps> = ({ consultaI
               >
                   <div className="flex justify-between items-center mb-2">
                       <h4 className="font-bold text-base text-slate-800 flex items-center">
-                          <Icon name="flutter_dash" className="mr-2 text-indigo-600" />
+                          <Icon name="flutter_dash" className="mr-2 text-[var(--color-primary)]" />
                           Assistente Uirapuru
                       </h4>
                       <Button size="icon" variant="ghost" onClick={() => setIsHelpVisible(false)} aria-label="Fechar ajuda">

@@ -8,7 +8,7 @@ interface BottomNavProps {
 }
 
 const NavItem: React.FC<{ icon: string; label: string; view: View; isActive: boolean; onClick: (view: View) => void; }> = ({ icon, label, view, isActive, onClick }) => {
-  const activeClasses = 'text-indigo-600';
+  const activeClasses = 'text-[var(--color-primary)]';
   const inactiveClasses = 'text-slate-500 hover:text-slate-800';
   return (
     <button onClick={() => onClick(view)} className={`flex flex-col items-center justify-center space-y-1 w-full transition-colors ${isActive ? activeClasses : inactiveClasses}`}>
@@ -60,7 +60,7 @@ const BottomNav: React.FC<BottomNavProps> = ({ navigateTo, currentView }) => {
               <div key={item.view} className="w-1/5 flex justify-center">
                   <button 
                     onClick={() => navigateTo(item.view)} 
-                    className={`-translate-y-5 w-[4.5rem] h-[4.5rem] rounded-full flex flex-col items-center justify-center shadow-lg transition-transform hover:scale-105 ${isActive ? 'bg-indigo-600 text-white' : 'bg-indigo-500 text-white hover:bg-indigo-600'}`}
+                    className={`-translate-y-5 w-[4.5rem] h-[4.5rem] rounded-full flex flex-col items-center justify-center shadow-lg transition-transform hover:scale-105 bg-[var(--color-primary)] text-white hover:bg-opacity-90`}
                     aria-label="Participar da Cidade"
                   >
                       <Icon name="campaign" className="text-2xl" />

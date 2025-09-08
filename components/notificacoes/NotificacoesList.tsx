@@ -27,10 +27,10 @@ const NotificacaoSkeletonItem: React.FC = () => (
 
 const getIconForNotificacao = (notificacao: Notificacao) => {
     if (notificacao.titulo.toLowerCase().includes('lembrete')) {
-        return { icon: 'event_available', color: 'text-sky-500' };
+        return { icon: 'event_available', color: 'text-[var(--color-primary)]' };
     }
     if (notificacao.titulo.toLowerCase().includes('protocolo')) {
-        return { icon: 'list_alt', color: 'text-emerald-500' };
+        return { icon: 'list_alt', color: 'text-[var(--color-accent-green)]' };
     }
     return { icon: 'notifications', color: 'text-gray-500' };
 };
@@ -41,7 +41,7 @@ const NotificacaoItem: React.FC<{ notificacao: Notificacao; onClick: () => void;
     return (
         <div 
             onClick={onClick}
-            className={`flex items-start space-x-4 p-4 border-l-4 ${notificacao.lida ? 'border-transparent bg-white' : 'border-indigo-500 bg-indigo-50'} rounded-r-lg shadow-sm cursor-pointer hover:bg-gray-100 transition-colors`}
+            className={`flex items-start space-x-4 p-4 border-l-4 ${notificacao.lida ? 'border-transparent bg-white' : 'border-[var(--color-primary)] bg-[var(--color-primary-light)]'} rounded-r-lg shadow-sm cursor-pointer hover:bg-gray-100 transition-colors`}
         >
             <Icon name={icon} className={`text-3xl mt-1 ${color}`} />
             <div className="flex-1">

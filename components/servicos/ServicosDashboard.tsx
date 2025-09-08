@@ -29,8 +29,8 @@ const ServicosDashboard: React.FC<ServicosDashboardProps> = ({ navigateTo }) => 
             onClick={() => navigateTo(item.view)}
             className="text-center flex flex-col items-center justify-center space-y-2 !p-6"
           >
-            <div className="bg-indigo-100 p-4 rounded-full">
-              <Icon name={item.icon} className="text-indigo-600 text-4xl" />
+            <div className="bg-[var(--color-primary-light)] p-4 rounded-full">
+              <Icon name={item.icon} className="text-[var(--color-primary)] text-4xl" />
             </div>
             <h3 className="font-bold text-slate-800 text-lg">{item.title}</h3>
             <p className="text-sm text-slate-600">{item.description}</p>

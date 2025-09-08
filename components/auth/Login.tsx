@@ -20,7 +20,7 @@ const Login: React.FC = () => {
           className="h-24 mx-auto mb-4"
         />
         <h1 className="text-3xl font-bold text-slate-800">
-          Minha <span className="text-indigo-600">Baturité</span>
+          Minha <span className="text-[var(--color-accent-pink)]">Baturité</span>
         </h1>
         <p className="mt-2 text-slate-600">
           Sua cidade na palma da sua mão. Acesse para continuar.

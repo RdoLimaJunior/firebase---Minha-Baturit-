@@ -38,7 +38,7 @@ const Acessibilidade: React.FC<AcessibilidadeProps> = ({ navigateTo }) => {
         <div className="flex items-center justify-center space-x-2">
             <Button onClick={decreaseFontSize} size="icon" aria-label="Diminuir fonte" disabled={FONT_SIZES.indexOf(fontSize) === 0}><Icon name="text_decrease" /></Button>
             <div className="w-full max-w-xs h-1 bg-slate-200 rounded-full overflow-hidden">
-                <div className="h-full bg-indigo-600 transition-all duration-300" style={{ width: `${(FONT_SIZES.indexOf(fontSize) / (FONT_SIZES.length - 1)) * 100}%`}}></div>
+                <div className="h-full bg-[var(--color-primary)] transition-all duration-300" style={{ width: `${(FONT_SIZES.indexOf(fontSize) / (FONT_SIZES.length - 1)) * 100}%`}}></div>
             </div>
             <Button onClick={increaseFontSize} size="icon" aria-label="Aumentar fonte" disabled={FONT_SIZES.indexOf(fontSize) === FONT_SIZES.length - 1}><Icon name="text_increase" /></Button>
         </div>

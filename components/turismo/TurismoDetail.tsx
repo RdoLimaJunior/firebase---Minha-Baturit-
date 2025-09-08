@@ -35,29 +35,29 @@ const TurismoDetail: React.FC<TurismoDetailProps> = ({ turismoId, categoria, nav
           className="w-full h-64 object-cover" 
         />
         <div className="p-6 space-y-4">
-          <h2 className="text-2xl font-bold text-slate-800 dark:text-slate-100">{item.nome}</h2>
-          <p className="text-slate-700 dark:text-slate-200 leading-relaxed">{item.descricao}</p>
+          <h2 className="text-2xl font-bold text-slate-800">{item.nome}</h2>
+          <p className="text-slate-700 leading-relaxed">{item.descricao}</p>
           
-          <div className="pt-4 border-t border-slate-200 dark:border-slate-700 space-y-3">
-             <div className="flex items-start space-x-3 text-slate-700 dark:text-slate-200">
-                <Icon name="location_on" className="text-xl text-slate-400 dark:text-slate-500 mt-0.5" />
+          <div className="pt-4 border-t border-slate-200 space-y-3">
+             <div className="flex items-start space-x-3 text-slate-700">
+                <Icon name="location_on" className="text-xl text-slate-400 mt-0.5" />
                 <span className="text-sm">{item.endereco}</span>
             </div>
             {item.contato && (
-                <div className="flex items-start space-x-3 text-slate-700 dark:text-slate-200">
-                    <Icon name="phone" className="text-xl text-slate-400 dark:text-slate-500 mt-0.5" />
+                <div className="flex items-start space-x-3 text-slate-700">
+                    <Icon name="phone" className="text-xl text-slate-400 mt-0.5" />
                     <span className="text-sm">{item.contato}</span>
                 </div>
             )}
             {item.site && (
-                 <div className="flex items-start space-x-3 text-slate-700 dark:text-slate-200">
-                    <Icon name="language" className="text-xl text-slate-400 dark:text-slate-500 mt-0.5" />
-                    <a href={item.site} target="_blank" rel="noopener noreferrer" className="text-sm text-indigo-700 dark:text-indigo-400 hover:underline">{item.site}</a>
+                 <div className="flex items-start space-x-3 text-slate-700">
+                    <Icon name="language" className="text-xl text-slate-400 mt-0.5" />
+                    <a href={item.site} target="_blank" rel="noopener noreferrer" className="text-sm text-[var(--color-primary)] hover:underline">{item.site}</a>
                 </div>
             )}
           </div>
 
-           <div className="pt-4 mt-4 border-t border-slate-200 dark:border-slate-700 flex items-center flex-wrap gap-3">
+           <div className="pt-4 mt-4 border-t border-slate-200 flex items-center flex-wrap gap-3">
                 <Button
                     iconLeft="map"
                     onClick={handleVerNoMapa}
@@ -80,7 +80,7 @@ const TurismoDetail: React.FC<TurismoDetailProps> = ({ turismoId, categoria, nav
 
       {item.imagens.length > 1 && (
         <Card>
-          <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">Galeria de Fotos</h3>
+          <h3 className="text-lg font-bold text-slate-800 mb-4">Galeria de Fotos</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
             {item.imagens.slice(1).map((img, index) => (
               <img 

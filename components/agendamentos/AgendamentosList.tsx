@@ -30,11 +30,11 @@ const AgendamentoSkeletonItem: React.FC = () => (
 const getStatusChipStyle = (status: AgendamentoStatus) => {
     switch (status) {
         case AgendamentoStatus.AGENDADO:
-            return 'bg-sky-100 text-sky-800';
+            return 'bg-[var(--color-primary)]/20 text-[var(--color-primary)]';
         case AgendamentoStatus.REALIZADO:
-            return 'bg-emerald-100 text-emerald-800';
+            return 'bg-[var(--color-accent-green)]/20 text-[var(--color-accent-green)]';
         case AgendamentoStatus.CANCELADO:
-            return 'bg-rose-100 text-rose-800';
+            return 'bg-[var(--color-accent-red)]/20 text-[var(--color-accent-red)]';
         default:
             return 'bg-slate-100 text-slate-800';
     }
@@ -49,7 +49,7 @@ const AgendamentoItem: React.FC<{ agendamento: Agendamento; onCancel: (id: strin
         <Card>
             <div className="flex justify-between items-start">
                 <div className="flex items-center space-x-3">
-                    <Icon name={agendamento.servicoIcon} className="text-2xl text-indigo-600" />
+                    <Icon name={agendamento.servicoIcon} className="text-2xl text-[var(--color-primary)]" />
                     <div>
                         <h3 className="font-bold text-slate-800">{agendamento.servicoNome}</h3>
                         <p className="text-sm text-slate-500">{dataFormatada} às {horaFormatada}</p>
@@ -191,7 +191,7 @@ const AgendamentosList: React.FC<AgendamentosListProps> = ({ navigateTo }) => {
             aria-label={isCalendarOpen ? "Ocultar calendário" : "Mostrar calendário"}
             aria-expanded={isCalendarOpen}
             aria-controls="calendar-view-container"
-            className={!isCalendarOpen ? "text-indigo-600" : ""}
+            className={!isCalendarOpen ? "text-[var(--color-primary)]" : ""}
         >
             <Icon name="calendar_month" />
         </Button>

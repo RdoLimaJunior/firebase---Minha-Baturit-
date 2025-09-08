@@ -67,14 +67,14 @@ interface ToastProps extends ToastMessage {
 const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
   const baseClasses = 'flex items-center w-full max-w-xs p-4 text-slate-600 bg-white rounded-lg shadow-lg border';
   const typeClasses = {
-    success: 'bg-emerald-100 text-emerald-600 border-emerald-200',
-    error: 'bg-rose-100 text-rose-600 border-rose-200',
-    info: 'bg-sky-100 text-sky-600 border-sky-200',
+    success: 'bg-[var(--color-accent-green)]/10 text-[var(--color-accent-green)] border-[var(--color-accent-green)]/20',
+    error: 'bg-[var(--color-accent-red)]/10 text-[var(--color-accent-red)] border-[var(--color-accent-red)]/20',
+    info: 'bg-[var(--color-primary-light)] text-[var(--color-primary)] border-[var(--color-primary)]/20',
   };
   const iconClasses = {
-    success: 'text-emerald-500',
-    error: 'text-rose-500',
-    info: 'text-sky-500',
+    success: 'text-[var(--color-accent-green)]',
+    error: 'text-[var(--color-accent-red)]',
+    info: 'text-[var(--color-primary)]',
   }
 
   return (

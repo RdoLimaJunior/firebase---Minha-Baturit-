@@ -32,13 +32,13 @@ const ProtocoloSkeletonItem: React.FC = () => (
 const getStatusChipStyle = (status: StatusProtocolo) => {
     switch (status) {
         case StatusProtocolo.RECEBIDO:
-            return 'bg-sky-100 text-sky-800';
+            return 'bg-[var(--color-accent-yellow)]/20 text-[var(--color-accent-yellow)]';
         case StatusProtocolo.EM_ANDAMENTO:
-            return 'bg-amber-100 text-amber-800';
+            return 'bg-[var(--color-primary)]/20 text-[var(--color-primary)]';
         case StatusProtocolo.RESOLVIDO:
-            return 'bg-emerald-100 text-emerald-800';
+            return 'bg-[var(--color-accent-green)]/20 text-[var(--color-accent-green)]';
         case StatusProtocolo.REJEITADO:
-            return 'bg-rose-100 text-rose-800';
+            return 'bg-[var(--color-accent-red)]/20 text-[var(--color-accent-red)]';
         default:
             return 'bg-slate-100 text-slate-800';
     }
@@ -47,13 +47,13 @@ const getStatusChipStyle = (status: StatusProtocolo) => {
 const getProtocoloTypeStyle = (tipo: TipoProtocolo) => {
     switch (tipo) {
         case TipoProtocolo.RECLAMACAO:
-            return { icon: 'report_problem', color: 'text-rose-500' };
+            return { icon: 'report_problem', color: 'text-[var(--color-accent-red)]' };
         case TipoProtocolo.SUGESTAO:
-            return { icon: 'lightbulb', color: 'text-amber-500' };
+            return { icon: 'lightbulb', color: 'text-[var(--color-accent-yellow)]' };
         case TipoProtocolo.ELOGIO:
-            return { icon: 'thumb_up', color: 'text-emerald-500' };
+            return { icon: 'thumb_up', color: 'text-[var(--color-accent-green)]' };
         case TipoProtocolo.DENUNCIA:
-            return { icon: 'security', color: 'text-slate-600' };
+            return { icon: 'security', color: 'text-[var(--color-accent-pink)]' };
         default:
             return { icon: 'article', color: 'text-slate-500' };
     }
@@ -240,8 +240,8 @@ const ProtocoloForm: React.FC<ProtocoloFormProps> = ({ goBack, navigateTo, userP
                         </div>
                         <div className="space-y-3">
                             {Object.values(TipoProtocolo).map(type => (
-                                <Card key={type} onClick={() => handleTypeSelect(type)} className="flex items-center space-x-4 text-left !p-4 border-2 border-transparent hover:border-indigo-500 hover:shadow-lg">
-                                    <Icon name={TIPO_PROTOCOLO_METADATA[type].icon} className="text-3xl text-indigo-600" />
+                                <Card key={type} onClick={() => handleTypeSelect(type)} className="flex items-center space-x-4 text-left !p-4 border-2 border-transparent hover:border-[var(--color-primary)] hover:shadow-lg">
+                                    <Icon name={TIPO_PROTOCOLO_METADATA[type].icon} className="text-3xl text-[var(--color-primary)]" />
                                     <div>
                                         <h3 className="font-bold text-slate-800">{TIPO_PROTOCOLO_METADATA[type].title}</h3>
                                         <p className="text-sm text-slate-600">{TIPO_PROTOCOLO_METADATA[type].description}</p>
@@ -271,7 +271,7 @@ const ProtocoloForm: React.FC<ProtocoloFormProps> = ({ goBack, navigateTo, userP
                                 id="categoria"
                                 value={categoria}
                                 onChange={(e) => setCategoria(e.target.value as CategoriaReclamacao)}
-                                className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-md focus:ring-indigo-600 focus:border-indigo-600"
+                                className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-md focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]"
                             >
                                 <option value="" disabled>Selecione uma categoria</option>
                                 {Object.values(CategoriaReclamacao).map(cat => <option key={cat} value={cat}>{cat}</option>)}
@@ -285,7 +285,7 @@ const ProtocoloForm: React.FC<ProtocoloFormProps> = ({ goBack, navigateTo, userP
                             id="bairro"
                             value={bairro}
                             onChange={(e) => setBairro(e.target.value)}
-                            className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-md focus:ring-indigo-600 focus:border-indigo-600"
+                            className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-md focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]"
                         >
                             <option value="" disabled>Selecione seu bairro</option>
                             {BAIRROS_BATURITE.map(b => <option key={b} value={b}>{b}</option>)}
@@ -299,7 +299,7 @@ const ProtocoloForm: React.FC<ProtocoloFormProps> = ({ goBack, navigateTo, userP
                             rows={4}
                             value={descricao}
                             onChange={(e) => setDescricao(e.target.value)}
-                            className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-md focus:ring-indigo-600 focus:border-indigo-600"
+                            className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-md focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]"
                             placeholder="Descreva sua solicitação com o máximo de detalhes."
                         ></textarea>
                     </div>
@@ -322,7 +322,7 @@ const ProtocoloForm: React.FC<ProtocoloFormProps> = ({ goBack, navigateTo, userP
                            Usar minha localização atual
                         </Button>
                         {localizacao && (
-                            <div className="text-sm text-emerald-600 flex items-center justify-center">
+                            <div className="text-sm text-[var(--color-accent-green)] flex items-center justify-center">
                                 <Icon name="check_circle" className="text-lg mr-1" />
                                 Localização capturada!
                             </div>

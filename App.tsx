@@ -66,6 +66,28 @@ const AppContent: React.FC = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const viewParam = params.get('view') as View;
+
+    if (viewParam) {
+      const queryParams: { [key: string]: any } = {};
+      params.forEach((value, key) => {
+        if (key !== 'view') {
+          queryParams[key] = value;
+        }
+      });
+
+      navigateTo(viewParam, queryParams);
+
+      // Clean URL after navigation to avoid re-triggering on refresh
+      if (window.history.replaceState) {
+        const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState({}, document.title, cleanUrl);
+      }
+    }
+  }, [navigateTo]);
+
   const handleBottomNav = (view: View) => {
     navigateTo(view);
   };

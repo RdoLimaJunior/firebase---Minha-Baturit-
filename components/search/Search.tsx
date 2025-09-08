@@ -93,7 +93,7 @@ const Search: React.FC<SearchProps> = ({ navigateTo }) => {
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         placeholder="Buscar em protocolos, notícias, etc."
-                        className="w-full p-4 pl-12 bg-white text-slate-900 border border-slate-300 rounded-full focus:ring-indigo-600 focus:border-indigo-600 text-base"
+                        className="w-full p-4 pl-12 bg-white text-slate-900 border border-slate-300 rounded-full focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] text-base"
                         autoFocus
                     />
                 </div>

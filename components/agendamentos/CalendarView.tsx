@@ -78,9 +78,9 @@ const CalendarView: React.FC<CalendarViewProps> = ({ agendamentos, currentDate, 
 
           let buttonClasses = "w-full h-12 flex flex-col justify-center items-center rounded-full transition-colors text-sm ";
           if (isSelected) {
-            buttonClasses += "bg-indigo-600 text-white font-bold";
+            buttonClasses += "bg-[var(--color-primary)] text-white font-bold";
           } else if (isToday) {
-            buttonClasses += "bg-indigo-100 text-indigo-700 font-bold";
+            buttonClasses += "bg-[var(--color-primary-light)] text-[var(--color-primary)] font-bold";
           } else {
             buttonClasses += "hover:bg-slate-100 text-slate-700";
           }

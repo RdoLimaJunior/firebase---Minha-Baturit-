@@ -23,10 +23,32 @@
       })();
     </script>
     <style>
+      :root {
+        --color-primary: #2A52BE; /* Blue */
+        --color-primary-light: #E9EFFF;
+        --color-accent-pink: #B53389; /* Pink/Magenta */
+        --color-accent-green: #8DB685; /* Green */
+        --color-accent-yellow: #E4B460; /* Yellow/Gold */
+        --color-accent-red: #C44D58; /* Red/Orange */
+      }
       :root.font-size-sm { font-size: 14px; }
       :root.font-size-base { font-size: 16px; }
       :root.font-size-lg { font-size: 18px; }
       :root.font-size-xl { font-size: 20px; }
+
+      /* Custom Map Marker Styles */
+      .map-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        transition: all 0.3s;
+      }
+      .map-icon-saude { background-color: var(--color-accent-red); }
+      .map-icon-educacao { background-color: var(--color-primary); }
+      .map-icon-assistencia { background-color: var(--color-accent-pink); }
+      .map-icon-admin { background-color: #64748b; /* slate-500 */ }
+      .map-icon-turismo { background-color: var(--color-accent-yellow); }
     </style>
   <script type="importmap">
 {

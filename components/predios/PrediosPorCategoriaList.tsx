@@ -9,9 +9,9 @@ import Modal from '../ui/Modal';
 import { haversineDistance } from '../../utils/helpers';
 
 const CATEGORY_DETAILS: Record<CategoriaPredioPublico, { icon: string; color: string; bgColor: string }> = {
-    'Saúde': { icon: 'local_hospital', color: 'text-rose-700', bgColor: 'bg-rose-100' },
-    'Educação': { icon: 'school', color: 'text-sky-700', bgColor: 'bg-sky-100' },
-    'Assistência Social': { icon: 'people', color: 'text-violet-700', bgColor: 'bg-violet-100' },
+    'Saúde': { icon: 'local_hospital', color: 'text-[var(--color-accent-red)]', bgColor: 'bg-[var(--color-accent-red)]/10' },
+    'Educação': { icon: 'school', color: 'text-[var(--color-primary)]', bgColor: 'bg-[var(--color-primary)]/10' },
+    'Assistência Social': { icon: 'people', color: 'text-[var(--color-accent-pink)]', bgColor: 'bg-[var(--color-accent-pink)]/10' },
     'Administração': { icon: 'corporate_fare', color: 'text-slate-700', bgColor: 'bg-slate-200' }
 };
 
@@ -79,7 +79,7 @@ const PredioCard: React.FC<{predio: PredioPublico & {distance: number | null}, o
                         e.stopPropagation();
                         window.location.href = `tel:${predio.telefone.replace(/\D/g, '')}`;
                     }} 
-                    className="w-full !text-emerald-600 hover:!bg-emerald-100"
+                    className="w-full !text-[var(--color-accent-green)] hover:!bg-[var(--color-accent-green)]/10"
                     iconLeft="call"
                 >
                     Ligar
@@ -227,7 +227,7 @@ const PrediosPorCategoriaList: React.FC<PrediosPorCategoriaListProps> = ({ navig
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         placeholder="Buscar por nome, bairro, serviço..."
-                        className="w-full p-3 pl-10 bg-white text-slate-900 border border-slate-300 rounded-full focus:ring-indigo-600 focus:border-indigo-600 text-sm"
+                        className="w-full p-3 pl-10 bg-white text-slate-900 border border-slate-300 rounded-full focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] text-sm"
                     />
                 </div>
                 <Card className="!p-2">
@@ -251,7 +251,7 @@ const PrediosPorCategoriaList: React.FC<PrediosPorCategoriaListProps> = ({ navig
                     {selectedPredio.imagens && selectedPredio.imagens.length > 1 && (
                     <div className="p-2 flex space-x-2 overflow-x-auto bg-slate-100">
                         {selectedPredio.imagens.map((img, index) => (
-                            <img key={index} src={img} alt={`Miniatura ${index + 1}`} className={`w-16 h-16 object-cover rounded-md cursor-pointer border-2 flex-shrink-0 ${mainImage === img ? 'border-indigo-500' : 'border-transparent'}`} onClick={() => setMainImage(img)} />
+                            <img key={index} src={img} alt={`Miniatura ${index + 1}`} className={`w-16 h-16 object-cover rounded-md cursor-pointer border-2 flex-shrink-0 ${mainImage === img ? 'border-[var(--color-primary)]' : 'border-transparent'}`} onClick={() => setMainImage(img)} />
                         ))}
                     </div>
                     )}
@@ -265,7 +265,7 @@ const PrediosPorCategoriaList: React.FC<PrediosPorCategoriaListProps> = ({ navig
                         </div>
                         <div className="pt-4 border-t border-slate-200"><h5 className="font-bold text-slate-800 mb-2">Serviços oferecidos:</h5><ul className="list-disc list-inside space-y-1 pl-1">{selectedPredio.servicos.map((s, i) => <li key={i}>{s}</li>)}</ul></div>
                         {selectedPredio.profissionais && selectedPredio.profissionais.length > 0 && (<div className="pt-4 border-t border-slate-200"><h5 className="font-bold text-slate-800 mb-3">Profissionais</h5><div className="space-y-3">{selectedPredio.profissionais.map((prof, i) => (<div key={i} className="text-sm"><p className="font-semibold text-slate-700">{prof.nome}</p><p className="text-slate-600">{prof.cargo}</p><p className="text-xs text-slate-500 uppercase">{prof.cargaHoraria}</p></div>))}</div></div>)}
-                        <div className="pt-4 mt-4 border-t border-slate-200 flex items-center flex-wrap gap-3"><Button iconLeft="call" onClick={() => window.location.href = `tel:${selectedPredio.telefone.replace(/\D/g, '')}`} variant="secondary" className="bg-emerald-600 hover:bg-emerald-700 text-white">Ligar</Button><Button iconLeft="directions" onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${selectedPredio.localizacao.latitude},${selectedPredio.localizacao.longitude}`, '_blank')} variant="primary" className="bg-sky-600 hover:bg-sky-700 text-white">Google Maps</Button><Button iconLeft="navigation" onClick={() => window.open(`waze://?ll=${selectedPredio.localizacao.latitude},${selectedPredio.localizacao.longitude}&navigate=yes`, '_blank')} variant="secondary" className="bg-cyan-500 hover:bg-cyan-600 text-white">Waze</Button></div>
+                        <div className="pt-4 mt-4 border-t border-slate-200 flex items-center flex-wrap gap-3"><Button iconLeft="call" onClick={() => window.location.href = `tel:${selectedPredio.telefone.replace(/\D/g, '')}`} variant="secondary" className="!bg-[var(--color-accent-green)] hover:!bg-opacity-90 text-white">Ligar</Button><Button iconLeft="directions" onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${selectedPredio.localizacao.latitude},${selectedPredio.localizacao.longitude}`, '_blank')} variant="primary">Rotas</Button></div>
                     </div>
                 </Modal>
             )}

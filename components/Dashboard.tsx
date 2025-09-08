@@ -4,14 +4,15 @@ import Button from './ui/Button';
 import { UserProfile, View } from '../types';
 import { useToast } from './ui/Toast';
 import { useChat } from '../../hooks/useChat';
-import ChatMessageComponent from './dashboard/ChatMessage';
+// FIX: Changed to a named import to resolve the "no default export" error.
+import { ChatMessageComponent } from './dashboard/ChatMessage';
 import WeatherWidget from './dashboard/WeatherWidget';
 import DynamicGreeting from './dashboard/DynamicGreeting';
 
 const TypingIndicator = () => (
     <div className="flex items-start gap-4 animate-fade-slide-in">
-        <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0">
-            <Icon name="flutter_dash" className="text-indigo-600 !text-xl" />
+        <div className="w-8 h-8 rounded-full bg-[var(--color-primary-light)] flex items-center justify-center flex-shrink-0">
+            <Icon name="flutter_dash" className="text-[var(--color-primary)] !text-xl" />
         </div>
         <div className="pt-1.5 w-full">
              <p className="font-semibold text-slate-800">Assistente Uirapuru</p>
@@ -263,7 +264,7 @@ const Dashboard: React.FC<DashboardProps> = ({ navigateTo, userProfile }) => {
             </div>
           )}
           <form onSubmit={handleSend} className="w-full">
-              <div className="bg-white border border-slate-200 rounded-2xl p-2 flex items-center gap-2 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500">
+              <div className="bg-white border border-slate-200 rounded-2xl p-2 flex items-center gap-2 shadow-sm focus-within:ring-2 focus-within:ring-[var(--color-primary)]">
                 <input
                     type="text"
                     value={input}

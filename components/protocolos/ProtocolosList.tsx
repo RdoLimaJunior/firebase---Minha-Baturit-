@@ -32,13 +32,13 @@ const ProtocoloSkeletonItem: React.FC = () => (
 const getStatusChipStyle = (status: StatusProtocolo) => {
     switch (status) {
         case StatusProtocolo.RECEBIDO:
-            return 'bg-sky-100 text-sky-800';
+            return 'bg-[var(--color-accent-yellow)]/20 text-[var(--color-accent-yellow)]';
         case StatusProtocolo.EM_ANDAMENTO:
-            return 'bg-amber-100 text-amber-800';
+            return 'bg-[var(--color-primary)]/20 text-[var(--color-primary)]';
         case StatusProtocolo.RESOLVIDO:
-            return 'bg-emerald-100 text-emerald-800';
+            return 'bg-[var(--color-accent-green)]/20 text-[var(--color-accent-green)]';
         case StatusProtocolo.REJEITADO:
-            return 'bg-rose-100 text-rose-800';
+            return 'bg-[var(--color-accent-red)]/20 text-[var(--color-accent-red)]';
         default:
             return 'bg-slate-100 text-slate-800';
     }
@@ -47,13 +47,13 @@ const getStatusChipStyle = (status: StatusProtocolo) => {
 const getProtocoloTypeStyle = (tipo: TipoProtocolo) => {
     switch (tipo) {
         case TipoProtocolo.RECLAMACAO:
-            return { icon: 'report_problem', color: 'text-rose-500' };
+            return { icon: 'report_problem', color: 'text-[var(--color-accent-red)]' };
         case TipoProtocolo.SUGESTAO:
-            return { icon: 'lightbulb', color: 'text-amber-500' };
+            return { icon: 'lightbulb', color: 'text-[var(--color-accent-yellow)]' };
         case TipoProtocolo.ELOGIO:
-            return { icon: 'thumb_up', color: 'text-emerald-500' };
+            return { icon: 'thumb_up', color: 'text-[var(--color-accent-green)]' };
         case TipoProtocolo.DENUNCIA:
-            return { icon: 'security', color: 'text-slate-600' };
+            return { icon: 'security', color: 'text-[var(--color-accent-pink)]' };
         default:
             return { icon: 'article', color: 'text-slate-500' };
     }

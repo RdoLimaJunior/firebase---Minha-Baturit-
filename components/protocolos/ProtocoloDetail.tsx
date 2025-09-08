@@ -13,10 +13,10 @@ interface ProtocoloDetailProps {
 
 const getStatusIcon = (status: StatusProtocolo) => {
     switch(status) {
-        case StatusProtocolo.RECEBIDO: return <Icon name="article" className="text-sky-500 text-2xl" />;
-        case StatusProtocolo.EM_ANDAMENTO: return <Icon name="sync" className="text-amber-500 text-2xl" />;
-        case StatusProtocolo.RESOLVIDO: return <Icon name="check_circle" className="text-emerald-500 text-2xl" />;
-        case StatusProtocolo.REJEITADO: return <Icon name="cancel" className="text-rose-500 text-2xl" />;
+        case StatusProtocolo.RECEBIDO: return <Icon name="article" className="text-[var(--color-accent-yellow)] text-2xl" />;
+        case StatusProtocolo.EM_ANDAMENTO: return <Icon name="sync" className="text-[var(--color-primary)] text-2xl" />;
+        case StatusProtocolo.RESOLVIDO: return <Icon name="check_circle" className="text-[var(--color-accent-green)] text-2xl" />;
+        case StatusProtocolo.REJEITADO: return <Icon name="cancel" className="text-[var(--color-accent-red)] text-2xl" />;
         default: return null;
     }
 };
@@ -50,6 +50,11 @@ const ProtocoloDetail: React.FC<ProtocoloDetailProps> = ({ protocoloId, goBack }
 
   if (loading) return <Spinner />;
   if (!protocolo) return <Card><p>Protocolo não encontrado.</p></Card>;
+  
+  const deepLink = `https://baturit-digital.web.app/?view=PROTOCOLO_DETAIL&protocoloId=${protocolo.id}`;
+  const qrData = `Protocolo: ${protocolo.protocolo}\nLink: ${deepLink}`;
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=256x256&margin=10`;
+  const qrCodeDownloadUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=512x512&margin=10&format=png`;
 
   return (
     <div className="space-y-4">
@@ -74,6 +79,30 @@ const ProtocoloDetail: React.FC<ProtocoloDetailProps> = ({ protocoloId, goBack }
                 <img src={protocolo.fotos[0]} alt="Foto do protocolo" className="rounded-lg w-full h-auto object-cover"/>
             </div>
         )}
+      </Card>
+
+      <Card>
+        <h3 className="text-lg font-bold text-slate-800 mb-4">Acompanhamento Rápido</h3>
+        <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+            <div className="flex-shrink-0">
+                <img src={qrCodeUrl} alt={`QR Code para o protocolo ${protocolo.protocolo}`} className="w-40 h-40 rounded-lg border-4 border-slate-200" />
+            </div>
+            <div>
+                <p className="text-slate-600">
+                    Aponte a câmera do seu celular para o QR Code para acessar os detalhes deste protocolo a qualquer momento.
+                </p>
+                <div className="mt-4 flex flex-col sm:flex-row gap-2">
+                    <a 
+                        href={qrCodeDownloadUrl}
+                        download={`qrcode-protocolo-${protocolo.protocolo}.png`}
+                        className="inline-flex items-center justify-center rounded-lg font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 bg-[var(--color-primary)] text-white hover:bg-opacity-90 focus:ring-[var(--color-primary)] px-4 py-2 text-base"
+                    >
+                       <Icon name="download" className="mr-2" />
+                       Baixar QR Code
+                    </a>
+                </div>
+            </div>
+        </div>
       </Card>
 
       <Card>

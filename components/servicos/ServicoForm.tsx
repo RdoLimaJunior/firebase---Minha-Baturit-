@@ -61,7 +61,7 @@ const ServicoForm: React.FC<ServicoFormProps> = ({ servicoId, goBack, userProfil
       <Card>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="text-center">
-            <Icon name={servico.icon} className="text-6xl text-indigo-600 mx-auto" />
+            <Icon name={servico.icon} className="text-6xl text-[var(--color-primary)] mx-auto" />
             <h2 className="text-2xl font-bold text-slate-800 mt-4">{servico.nome}</h2>
             <p className="text-slate-600 mt-2">
               {servico.descricao}
@@ -78,7 +78,7 @@ const ServicoForm: React.FC<ServicoFormProps> = ({ servicoId, goBack, userProfil
                 value={dataHora}
                 onChange={(e) => setDataHora(e.target.value)}
                 min={getMinDateTime()}
-                className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-md focus:ring-indigo-600 focus:border-indigo-600"
+                className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-md focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)]"
               />
             </div>
             
@@ -88,7 +88,7 @@ const ServicoForm: React.FC<ServicoFormProps> = ({ servicoId, goBack, userProfil
                 type="checkbox"
                 checked={comLembrete}
                 onChange={(e) => setComLembrete(e.target.checked)}
-                className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                className="h-4 w-4 rounded border-slate-300 text-[var(--color-primary)] focus:ring-[var(--color-primary)]"
               />
               <label htmlFor="lembrete" className="ml-2 block text-sm text-slate-700">
                 Criar lembrete para este agendamento

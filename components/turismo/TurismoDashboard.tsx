@@ -9,11 +9,11 @@ interface TurismoDashboardProps {
 }
 
 const CATEGORIAS_TURISMO: { id: TurismoCategoria; title: string; icon: string; description: string; color: string; }[] = [
-    { id: 'Pontos Turísticos', title: 'Pontos Turísticos', icon: 'account_balance', description: 'Monumentos e história', color: 'bg-amber-500' },
-    { id: 'Gastronomia', title: 'Gastronomia', icon: 'restaurant', description: 'Sabores da serra', color: 'bg-red-500' },
-    { id: 'Hospedagem', title: 'Hospedagem', icon: 'hotel', description: 'Encontre seu refúgio', color: 'bg-blue-500' },
-    { id: 'Lazer e Entretenimento', title: 'Lazer e Entretenimento', icon: 'local_activity', description: 'Aventura e diversão', color: 'bg-green-500' },
-    { id: 'Cultura', title: 'Cultura', icon: 'theater_comedy', description: 'Espaços e eventos', color: 'bg-purple-500' },
+    { id: 'Pontos Turísticos', title: 'Pontos Turísticos', icon: 'account_balance', description: 'Monumentos e história', color: 'bg-[var(--color-accent-yellow)]' },
+    { id: 'Gastronomia', title: 'Gastronomia', icon: 'restaurant', description: 'Sabores da serra', color: 'bg-[var(--color-accent-red)]' },
+    { id: 'Hospedagem', title: 'Hospedagem', icon: 'hotel', description: 'Encontre seu refúgio', color: 'bg-[var(--color-primary)]' },
+    { id: 'Lazer e Entretenimento', title: 'Lazer e Entretenimento', icon: 'local_activity', description: 'Aventura e diversão', color: 'bg-[var(--color-accent-green)]' },
+    { id: 'Cultura', title: 'Cultura', icon: 'theater_comedy', description: 'Espaços e eventos', color: 'bg-[var(--color-accent-pink)]' },
 ];
 
 const TurismoDashboard: React.FC<TurismoDashboardProps> = ({ navigateTo }) => {

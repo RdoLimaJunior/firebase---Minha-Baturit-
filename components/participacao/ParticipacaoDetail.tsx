@@ -16,21 +16,21 @@ interface ParticipacaoDetailProps {
 
 const getStatusStyle = (status: StatusPublicacao) => {
     switch (status) {
-        case StatusPublicacao.ABERTO: return { icon: 'record_voice_over', color: 'text-sky-500' };
-        case StatusPublicacao.EM_ANALISE: return { icon: 'manage_search', color: 'text-amber-500' };
-        case StatusPublicacao.ENCAMINHADO: return { icon: 'send', color: 'text-violet-500' };
-        case StatusPublicacao.CONCLUIDO: return { icon: 'check_circle', color: 'text-emerald-500' };
-        case StatusPublicacao.REJEITADO: return { icon: 'gpp_bad', color: 'text-rose-500' };
+        case StatusPublicacao.ABERTO: return { icon: 'record_voice_over', color: 'text-[var(--color-primary)]' };
+        case StatusPublicacao.EM_ANALISE: return { icon: 'manage_search', color: 'text-[var(--color-accent-yellow)]' };
+        case StatusPublicacao.ENCAMINHADO: return { icon: 'send', color: 'text-[var(--color-accent-pink)]' };
+        case StatusPublicacao.CONCLUIDO: return { icon: 'check_circle', color: 'text-[var(--color-accent-green)]' };
+        case StatusPublicacao.REJEITADO: return { icon: 'gpp_bad', color: 'text-[var(--color-accent-red)]' };
         default: return { icon: 'article', color: 'text-slate-500' };
     }
 };
 
 const getTypeStyle = (tipo: TipoPublicacao) => {
     switch (tipo) {
-        case TipoPublicacao.PROBLEMA: return { icon: 'report_problem', color: 'text-rose-500' };
-        case TipoPublicacao.IDEIA: return { icon: 'lightbulb', color: 'text-amber-500' };
-        case TipoPublicacao.ELOGIO: return { icon: 'thumb_up', color: 'text-emerald-500' };
-        case TipoPublicacao.EVENTO: return { icon: 'event', color: 'text-sky-500' };
+        case TipoPublicacao.PROBLEMA: return { icon: 'report_problem', color: 'text-[var(--color-accent-red)]' };
+        case TipoPublicacao.IDEIA: return { icon: 'lightbulb', color: 'text-[var(--color-accent-yellow)]' };
+        case TipoPublicacao.ELOGIO: return { icon: 'thumb_up', color: 'text-[var(--color-accent-green)]' };
+        case TipoPublicacao.EVENTO: return { icon: 'event', color: 'text-[var(--color-primary)]' };
         default: return { icon: 'forum', color: 'text-slate-500' };
     }
 };
@@ -169,7 +169,7 @@ const ParticipacaoDetail: React.FC<ParticipacaoDetailProps> = ({ publicacaoId, n
         <h2 className="text-lg font-bold text-slate-800 mb-4">Comentários ({comments.length})</h2>
         <div className="space-y-4">
             {comments.map(comment => (
-                <div key={comment.id} className={`flex items-start space-x-3 p-3 rounded-lg ${comment.isOfficialReply ? 'bg-indigo-50 border-l-4 border-indigo-500' : ''}`}>
+                <div key={comment.id} className={`flex items-start space-x-3 p-3 rounded-lg ${comment.isOfficialReply ? 'bg-[var(--color-primary-light)] border-l-4 border-[var(--color-primary)]' : ''}`}>
                     <img src={comment.author.avatar} alt={comment.author.name} className="w-9 h-9 rounded-full"/>
                     <div className="flex-1">
                         <div className="flex items-center justify-between">
@@ -177,7 +177,7 @@ const ParticipacaoDetail: React.FC<ParticipacaoDetailProps> = ({ publicacaoId, n
                             <span className="text-xs text-slate-400">{timeSince(comment.date)}</span>
                         </div>
                          {comment.isOfficialReply && (
-                            <div className="text-xs font-bold text-indigo-700 mt-0.5">RESPOSTA OFICIAL</div>
+                            <div className="text-xs font-bold text-[var(--color-primary)] mt-0.5">RESPOSTA OFICIAL</div>
                          )}
                         <p className="text-sm text-slate-600 mt-1">{comment.text}</p>
                     </div>
@@ -191,7 +191,7 @@ const ParticipacaoDetail: React.FC<ParticipacaoDetailProps> = ({ publicacaoId, n
                     value={newComment}
                     onChange={(e) => setNewComment(e.target.value)}
                     placeholder={isGuest ? "Faça login para comentar" : "Adicione um comentário..."}
-                    className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 text-sm"
+                    className="w-full p-2 bg-white text-slate-900 border border-slate-300 rounded-lg focus:ring-[var(--color-primary)] focus:border-[var(--color-primary)] text-sm"
                     rows={2}
                     disabled={isGuest}
                 />

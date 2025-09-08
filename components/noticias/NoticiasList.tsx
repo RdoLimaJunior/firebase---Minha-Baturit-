@@ -72,15 +72,15 @@ const NoticiaItem: React.FC<{ noticia: Noticia; onClick: () => void; onShare: ()
         <p className="text-sm text-slate-600 mt-1 line-clamp-3">{noticia.summary}</p>
       </div>
       <div className="p-4 border-t border-slate-100 flex items-center space-x-4">
-        <button onClick={handleLike} className="flex items-center space-x-1 text-slate-600 hover:text-red-500">
-          <Icon name={isLiked ? 'favorite' : 'favorite_border'} className={`text-2xl ${isLiked ? 'text-red-500' : ''}`} />
+        <button onClick={handleLike} className="flex items-center space-x-1 text-slate-600 hover:text-[var(--color-accent-red)]">
+          <Icon name={isLiked ? 'favorite' : 'favorite_border'} className={`text-2xl ${isLiked ? 'text-[var(--color-accent-red)]' : ''}`} />
           <span className="font-semibold text-sm">{likeCount.toLocaleString('pt-BR')}</span>
         </button>
         <div className="flex items-center space-x-1 text-slate-600">
             <Icon name="chat_bubble_outline" className="text-2xl" />
             <span className="font-semibold text-sm">{noticia.comments.length}</span>
         </div>
-        <button onClick={handleShareClick} className="flex items-center space-x-1 text-slate-600 hover:text-indigo-600">
+        <button onClick={handleShareClick} className="flex items-center space-x-1 text-slate-600 hover:text-[var(--color-primary)]">
             <Icon name="share" className="text-2xl" />
         </button>
       </div>

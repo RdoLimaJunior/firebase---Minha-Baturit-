@@ -29,9 +29,9 @@ const Button: React.FC<ButtonProps> = ({
   const disabledClasses = 'disabled:opacity-50 disabled:cursor-not-allowed';
 
   const variantClasses = {
-    primary: 'bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500',
-    secondary: 'bg-slate-100 text-slate-700 hover:bg-slate-200 focus:ring-indigo-500 border border-slate-200',
-    ghost: 'bg-transparent text-slate-600 hover:bg-slate-100 focus:ring-indigo-500',
+    primary: 'bg-[var(--color-primary)] text-white hover:bg-opacity-90 focus:ring-[var(--color-primary)]',
+    secondary: 'bg-slate-100 text-slate-700 hover:bg-slate-200 focus:ring-[var(--color-primary)] border border-slate-200',
+    ghost: 'bg-transparent text-slate-600 hover:bg-slate-100 focus:ring-[var(--color-primary)]',
   };
   
   const sizeClasses = {

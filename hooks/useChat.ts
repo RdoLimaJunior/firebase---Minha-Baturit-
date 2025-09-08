@@ -240,6 +240,20 @@ export const useChat = (userProfile: UserProfile) => {
       });
       setChat(chatInstance);
       
+      try {
+        const saved = sessionStorage.getItem('chatHistory');
+        if (saved) {
+            const parsedMessages = JSON.parse(saved);
+            if (Array.isArray(parsedMessages) && parsedMessages.length > 0) {
+                setMessages(parsedMessages);
+                return;
+            }
+        }
+      } catch (error) {
+          console.error("Failed to parse chat history from sessionStorage", error);
+          sessionStorage.removeItem('chatHistory');
+      }
+
       const userName = userProfile.displayName?.split(' ')[0] || 'Cidadão';
       const initialMessageContent = `Olá, ${userName}! Eu sou o Uirapuru, o assistente virtual do Minha Baturité. Como posso te ajudar hoje?`;
       const initialMessage: ChatMessage = {
@@ -252,6 +266,12 @@ export const useChat = (userProfile: UserProfile) => {
       setMessages([initialMessage]);
     }, [userProfile.displayName]);
   
+    useEffect(() => {
+        if (messages.length > 0) {
+            sessionStorage.setItem('chatHistory', JSON.stringify(messages));
+        }
+    }, [messages]);
+
     const sendMessage = useCallback(async (message: string) => {
       if (!message.trim() || isLoading || !chat) return;
   

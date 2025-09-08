@@ -30,11 +30,11 @@ const SkeletonCard: React.FC = () => (
 const getStatusStyle = (status: StatusConsultaPublica) => {
   switch (status) {
     case StatusConsultaPublica.ABERTA:
-      return { text: 'Aberta para participação', classes: 'bg-emerald-100 text-emerald-800' };
+      return { text: 'Aberta para participação', classes: 'bg-[var(--color-accent-green)]/20 text-[var(--color-accent-green)]' };
     case StatusConsultaPublica.ENCERRADA:
-      return { text: 'Encerrada', classes: 'bg-rose-100 text-rose-800' };
+      return { text: 'Encerrada', classes: 'bg-[var(--color-accent-red)]/20 text-[var(--color-accent-red)]' };
     case StatusConsultaPublica.EM_ANALISE:
-       return { text: 'Resultados em análise', classes: 'bg-amber-100 text-amber-800' };
+       return { text: 'Resultados em análise', classes: 'bg-[var(--color-accent-yellow)]/20 text-[var(--color-accent-yellow)]' };
     default:
       return { text: 'Status', classes: 'bg-slate-100 text-slate-800' };
   }
